@@ -1,6 +1,13 @@
 version: '3.3'
 
 services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    hostname: redis
+    volumes:
+      - ./dump/redis:/data
+
   django:
     build: .
     env_file:
