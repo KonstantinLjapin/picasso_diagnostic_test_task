@@ -5,6 +5,7 @@ services:
     image: redis:latest
     container_name: redis
     hostname: redis
+    restart: always
     volumes:
       - ./dump/redis:/data
 
@@ -21,6 +22,7 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - redis
 
   db:
     container_name: ${DB_CONTAINER_NAME}
