@@ -13,7 +13,7 @@ class FileUploadAPIView(APIView):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            reprocessed.delay()
+            reprocessed.delay(serializer.data.get('id'))
             return Response(
                 serializer.data,
                 status=status.HTTP_201_CREATED

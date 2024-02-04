@@ -3,7 +3,7 @@ from celery import shared_task
 
 
 @shared_task
-def reprocessed():
-    f = File.objects.get(id=1)
+def reprocessed(serializer_data_id):
+    f = File.objects.get(id=serializer_data_id)
     f.processed = True
     f.save()
